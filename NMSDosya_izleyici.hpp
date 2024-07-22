@@ -1,5 +1,5 @@
-#ifndef DOSYA_IZLEYICI_HPP
-#define DOSYA_IZLEYICI_HPP
+#ifndef NMSDOSYA_IZLEYICI_HPP
+#define NMSDOSYA_IZLEYICI_HPP
 
 #include <string>
 #include <unordered_map>
@@ -8,10 +8,10 @@
 #include <filesystem>
 #include <atomic>
 
-class DosyaIzleyici {
+class NMSDosyaIzleyici {
 public:
-    DosyaIzleyici();
-    ~DosyaIzleyici();
+    NMSDosyaIzleyici();
+    ~NMSDosyaIzleyici();
     
     void izlemeyeBasla(const std::string& dizin);
     void durdur();
@@ -31,4 +31,4 @@ private:
     std::function<void(const std::string&)> degistirmeCallback;
 };
 
-#endif // DOSYA_IZLEYICI_HPP
+#endif // NMSDOSYA_IZLEYICI_HPP
