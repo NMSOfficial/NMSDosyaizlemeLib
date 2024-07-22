@@ -1,40 +1,40 @@
-#include "dosya_izleyici.hpp"
+#include "NMSDosya_izleyici.hpp"
 #include <iostream>
 #include <chrono>
 #include <thread>
 
-DosyaIzleyici::DosyaIzleyici() : izlemeAktif(false) {}
+NMSDosyaIzleyici::NMSDosyaIzleyici() : izlemeAktif(false) {}
 
-DosyaIzleyici::~DosyaIzleyici() {
+NMSDosyaIzleyici::~NMSDosyaIzleyici() {
     durdur();
 }
 
-void DosyaIzleyici::izlemeyeBasla(const std::string& dizin) {
+void NMSDosyaIzleyici::izlemeyeBasla(const std::string& dizin) {
     izlenenDizin = dizin;
     izlemeAktif = true;
-    izlemeThread = std::thread(&DosyaIzleyici::izle, this);
+    izlemeThread = std::thread(&NMSDosyaIzleyici::izle, this);
 }
 
-void DosyaIzleyici::durdur() {
+void NMSDosyaIzleyici::durdur() {
     izlemeAktif = false;
     if (izlemeThread.joinable()) {
         izlemeThread.join();
     }
 }
 
-void DosyaIzleyici::dosyaOlusturma(std::function<void(const std::string&)> callback) {
+void NMSDosyaIzleyici::dosyaOlusturma(std::function<void(const std::string&)> callback) {
     olusturmaCallback = callback;
 }
 
-void DosyaIzleyici::dosyaSilme(std::function<void(const std::string&)> callback) {
+void NMSDosyaIzleyici::dosyaSilme(std::function<void(const std::string&)> callback) {
     silmeCallback = callback;
 }
 
-void DosyaIzleyici::dosyaDegistirme(std::function<void(const std::string&)> callback) {
+void NMSDosyaIzleyici::dosyaDegistirme(std::function<void(const std::string&)> callback) {
     degistirmeCallback = callback;
 }
 
-void DosyaIzleyici::izle() {
+void NMSDosyaIzleyici::izle() {
     while (izlemeAktif) {
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
